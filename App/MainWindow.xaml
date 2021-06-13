@@ -1,0 +1,120 @@
+﻿<Window x:Class="Rootmap.Configurator.MainWindow"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:local="clr-namespace:Rootmap.Configurator"
+    mc:Ignorable="d"
+    Title="{Binding TitleWithOutputPath}"
+    Width="1400"
+    MinWidth="1000"
+    MinHeight="1000"
+    WindowStartupLocation="CenterScreen"
+    WindowState="Maximized"
+    TextElement.Foreground="{DynamicResource MaterialDesignBody}"
+    TextElement.FontWeight="Medium"
+    TextElement.FontSize="12"
+    TextOptions.TextFormattingMode="Ideal"
+    TextOptions.TextRenderingMode="Auto"
+    Background="{DynamicResource MaterialDesignPaper}"
+    FontFamily="{DynamicResource MaterialDesignFont}">
+    <Window.CommandBindings>
+        <CommandBinding Command="{x:Static local:CustomCommands.RunRootmap}"
+            Executed="HandleRunRootmapCommand"></CommandBinding>
+        <CommandBinding Command="Open"
+            Executed="HandleOpenCommand"></CommandBinding>
+        <CommandBinding Command="Close"
+            Executed="HandleCloseCommand"></CommandBinding>
+        <CommandBinding Command="SaveAs"
+            Executed="HandleSaveAsCommand"></CommandBinding>
+        <CommandBinding Command="{x:Static local:CustomCommands.Exit}"
+            Executed="HandleExitCommand"></CommandBinding>
+        <CommandBinding Command="Undo"
+            Executed="HandleUndoCommand"></CommandBinding>
+        <CommandBinding Command="Redo"
+            Executed="HandleRedoCommand"></CommandBinding>
+    </Window.CommandBindings>
+    <Window.InputBindings>
+        <KeyBinding Key="R"
+            Modifiers="Ctrl"
+            Command="{x:Static local:CustomCommands.RunRootmap}"></KeyBinding>
+        <KeyBinding Key="W"
+            Modifiers="Ctrl"
+            Command="Close"></KeyBinding>
+        <KeyBinding Key="S"
+            Modifiers="Ctrl+Alt"
+            Command="SaveAs"></KeyBinding>
+        <KeyBinding Key="Z"
+            Modifiers="Ctrl"
+            Command="Undo"></KeyBinding>
+        <KeyBinding Key="Y"
+            Modifiers="Ctrl"
+            Command="Redo"></KeyBinding>
+    </Window.InputBindings>
+    <DockPanel>
+        <Menu DockPanel.Dock="Top">
+            <MenuItem Header="_File">
+                <MenuItem Command="{x:Static local:CustomCommands.RunRootmap}"
+                    Header="Run ROOTMAP"
+                    InputGestureText="Ctrl+R"
+                    Name="RunRootmapMenuItem"
+                    ToolTip="Launch ROOTMAP with the current configuration."
+                    ToolTipService.ShowOnDisabled="True"/>
+                <Separator/>
+                <MenuItem Command="Open"/>
+                <MenuItem Command="Close"
+                    InputGestureText="Ctrl+W"/>
+                <MenuItem Command="SaveAs"
+                    InputGestureText="Ctrl+Alt+S"/>
+                <MenuItem Command="{x:Static local:CustomCommands.Exit}"
+                    InputGestureText="Alt+F4"
+                    Header="Exit"/>
+                <!-- We don't have a separate concept of saving the current configuration.
+                    The app autosaves on every change. -->
+                <!--<MenuItem Header="_Save"/>-->
+            </MenuItem>
+            <MenuItem Header="_Edit">
+                <MenuItem Command="Undo"
+                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=CanUndo}"
+                    InputGestureText="Ctrl+Z"
+                    x:Name="UndoMenuItem"/>
+                <MenuItem Command="Redo"
+                    IsEnabled="{Binding RelativeSource={RelativeSource FindAncestor, AncestorType={x:Type Window}}, Path=CanRedo}"
+                    InputGestureText="Ctrl+Y"
+                    x:Name="RedoMenuItem"/>
+            </MenuItem>
+        </Menu>
+        <Grid Name="Container">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+            </Grid.RowDefinitions>
+            <DockPanel Grid.Column="0"
+                x:Name="LeftPanel">
+                <!-- Dock this component first, so it has priority. Otherwise it may get lost offscreen at small window heights. -->
+                <local:ConsoleDisplay DockPanel.Dock="Bottom" />
+                <ScrollViewer VerticalScrollBarVisibility="Disabled"
+                    CanContentScroll="True"
+                    DockPanel.Dock="Top">
+                    <DataGrid x:Name="ConfigurationsGrid"
+                        AutoGenerateColumns="True"
+                        ItemsSource="{Binding MainConfigurations}"
+                        SelectionChanged="DataGrid_SelectionChanged"
+                        Margin="8,0,8,0" />
+                </ScrollViewer>
+            </DockPanel>
+            <GridSplitter Grid.Column="1"
+                Width="10"
+                HorizontalAlignment="Stretch" />
+            <ScrollViewer VerticalScrollBarVisibility="Auto"
+                Grid.Column="2">
+                <StackPanel x:Name="Detail"
+                    Margin="8,0,8,0"/>
+            </ScrollViewer>
+        </Grid>
+    </DockPanel>
+</Window>

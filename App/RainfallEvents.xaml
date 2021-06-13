@@ -1,0 +1,106 @@
+﻿<src:BaseCodeBehind x:Class="Rootmap.Configurator.RainfallEvents"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:Rootmap.Configurator"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:validation="clr-namespace:Rootmap.Configurator.ValidationRules"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <Grid>
+        <materialDesign:Card Padding="16"
+            Margin="8">
+            <StackPanel>
+                <StackPanel>
+                    <TextBox Text="{Binding Name}"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch"/>
+                    <DataGrid ItemsSource="{Binding RainfallEvents}"
+                        TextInput="HandleChange"
+                        AutoGenerateColumns="False"
+                        CanUserAddRows="True">
+                        <DataGrid.Columns>
+                            <DataGridTextColumn Header="Radiation (MJ/m^2)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="Radiation">
+                                        <Binding.ValidationRules>
+                                            <validation:PositiveReal/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Max Temperature (°C)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="MaxTemp">
+                                        <Binding.ValidationRules>
+                                            <validation:ReasonableTemperature/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Min Temperature (°C)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="MinTemp">
+                                        <Binding.ValidationRules>
+                                            <validation:ReasonableTemperature/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Rain Amount (cm)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="RainAmountInCm">
+                                        <Binding.ValidationRules>
+                                            <validation:PositiveReal/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Pan Evaporation (mm)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="PanEvaporation">
+                                        <Binding.ValidationRules>
+                                            <validation:PositiveReal/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridTextColumn Header="Time (days)">
+                                <DataGridTextColumn.Binding>
+                                    <Binding Path="TimeInDays">
+                                        <Binding.ValidationRules>
+                                            <validation:PositiveReal/>
+                                        </Binding.ValidationRules>
+                                    </Binding>
+                                </DataGridTextColumn.Binding>
+                            </DataGridTextColumn>
+                            <DataGridCheckBoxColumn Header="Delete row"
+                                Binding="{Binding MarkedForDeletion}" />
+                        </DataGrid.Columns>
+                    </DataGrid>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Delete selected rows"
+                        HorizontalAlignment="Left"
+                        Margin="0,10,0,10"
+                        VerticalAlignment="Center"
+                        Width="200"
+                        Click="DeleteButton_Clicked"/>
+                        <Separator  Background="Transparent" Width="10"/>
+                    <Button Content="Add new row"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,0,10"
+                        VerticalAlignment="Center"
+                        Width="200"
+                        Click="AddNewLineButton_Clicked"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</src:BaseCodeBehind>

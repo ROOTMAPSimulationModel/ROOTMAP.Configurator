@@ -1,0 +1,36 @@
+﻿<Project Sdk="Microsoft.NET.Sdk.WindowsDesktop">
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>netcoreapp3.1</TargetFramework>
+    <UseWPF>true</UseWPF>
+    <UseWindowsForms>true</UseWindowsForms>
+  </PropertyGroup>
+  <ItemGroup>
+    <None Update="nlog.config">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </None>
+    <PackageReference Include="FSharp.Core" Version="5.0.1" />
+    <PackageReference Include="MaterialDesignThemes" Version="3.1.3" />
+    <PackageReference Include="NLog" Version="4.7.3" />
+    <PackageReference Include="nlog.extensions.logging" Version="1.6.4" />
+  </ItemGroup>
+  <ItemGroup>
+    <!-- Omnisharp does not support F#, so it can't make sense of references to F# symbols
+    made from C# projects.
+    Since F# compiles to IL just the same as C#, we can reference the DLL
+    and Omnisharp can then find the symbols.
+    It's messy. Maybe in the future Omnisharp will start being a bit more Omni
+    and we can remove this hack.
+    Note, of course, Transformer now needs to be built separately, manually,
+    in order for ConfigurationImporter to pick up changes.
+    See: https://stackoverflow.com/questions/57666251 -->
+    <!-- Update: Run `build.cmd` to automatically build Transformer.dll first and then build the console app.
+    `.\build.cmd` or `.\build.cmd Debug` will produce a debug build. `.\build.cmd Release` will produce a release build. -->
+    <!-- <ProjectReference Include="..\Transformer\Transformer.fsproj" /> -->
+    <Reference Include="Transformer.dll">
+      <HintPath>..\ConfigurationImporter\Transformer\bin\$(Configuration)\netstandard2.0\Transformer.dll</HintPath>
+    </Reference>
+    <ProjectReference Include="..\SchemaValidator\Validator\Validator.csproj" />
+    <ProjectReference Include="..\IO\IO.csproj" />
+  </ItemGroup>
+</Project>

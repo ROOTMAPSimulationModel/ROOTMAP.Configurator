@@ -1,0 +1,301 @@
+﻿<src:BaseCodeBehind x:Class="Rootmap.Configurator.VolumeObject"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:Rootmap.Configurator"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:validation="clr-namespace:Rootmap.Configurator.ValidationRules"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <Grid>
+        <materialDesign:Card Padding="16"
+            Margin="8">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*"/>
+                        <ColumnDefinition Width="50" />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <ComboBox Name="TypeCombo"
+                        SelectionChanged="HandleChange"
+                        SelectedValue="{Binding Type}"
+                        Style="{DynamicResource MaterialDesignComboBox}"
+                        FontSize="14"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Stretch"/>
+                    <Button Click="Delete"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        ToolTip="Delete this Volume Object">
+                        <materialDesign:PackIcon Kind="Delete" />
+                    </Button>
+                </Grid>
+                <Grid x:Name="originPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left">Origin:</TextBlock>
+                    <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="14"
+                        Style="{DynamicResource MaterialDesignBody2ContentControl}"
+                        Content="{Binding Origin}"/>
+                </Grid>
+                <Grid x:Name="radiusPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left">Radius:</TextBlock>
+                    <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch">
+                        <TextBox.Text>
+                            <Binding Path="Radius">
+                                <Binding.ValidationRules>
+                                    <validation:PositiveReal/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+                <Grid x:Name="depthPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left">Depth:</TextBlock>
+                    <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"
+                        Grid.Row="0"
+                        Grid.Column="1"
+                        HorizontalAlignment="Stretch">
+                        <TextBox.Text>
+                            <Binding Path="Depth">
+                                <Binding.ValidationRules>
+                                    <validation:PositiveReal/>
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                </Grid>
+
+                <Grid x:Name="leftFrontTopPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left">Left Front Top:</TextBlock>
+                    <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="14"
+                        Style="{DynamicResource MaterialDesignBody2ContentControl}"
+                        Content="{Binding LeftFrontTop}"/>
+                </Grid>
+                <Grid x:Name="rightBackBottomPanel">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        Grid.Row="0"
+                        Grid.Column="0"
+                        HorizontalAlignment="Left">Right Back Bottom:</TextBlock>
+                    <ContentControl Grid.Row="0"
+                        Grid.Column="1"
+                        FontSize="14"
+                        Style="{DynamicResource MaterialDesignBody2ContentControl}"
+                        Content="{Binding RightBackBottom}"/>
+                </Grid>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="0"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Permability (top):</TextBlock>
+                        <TextBox Text="{Binding PermeabilityViewModel.Top}"
+                            Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="0"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"/>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="1"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Permeability (sides):</TextBlock>
+                        <TextBox Text="{Binding PermeabilityViewModel.Sides}"
+                            Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="1"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"/>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="2"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Permeability (bottom):</TextBlock>
+                        <TextBox Text="{Binding PermeabilityViewModel.Bottom}"
+                            Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="2"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"/>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="3"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Root Penetration Probability Calculation:</TextBlock>
+                        <ComboBox Name="AlgorithmCombo"
+                            SelectionChanged="HandleChange"
+                            SelectedValue="{Binding RootPenetrationProbabilityViewModel.ProbabilityCalculationAlgorithm}"
+                            Style="{DynamicResource MaterialDesignComboBox}"
+                            FontSize="14"
+                            Grid.Row="3"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch"/>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="4"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Root Penetration Probability (top):</TextBlock>
+                        <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="4"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch">
+                            <TextBox.Text>
+                                <Binding Path="RootPenetrationProbabilityViewModel.Top">
+                                    <Binding.ValidationRules>
+                                        <validation:UnitInterval/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="5"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Root Penetration Probability (sides):</TextBlock>
+                        <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="5"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch">
+                            <TextBox.Text>
+                                <Binding Path="RootPenetrationProbabilityViewModel.Sides">
+                                    <Binding.ValidationRules>
+                                        <validation:UnitInterval/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                        <TextBlock Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                            Height="22"
+                            Padding="2"
+                            Margin="0,0,32,0"
+                            Grid.Row="6"
+                            Grid.Column="0"
+                            HorizontalAlignment="Left">Root Penetration Probability (bottom):</TextBlock>
+                        <TextBox Style="{DynamicResource MaterialDesignTextBox}"
+                            TextChanged="HandleChange"
+                            FontSize="14"
+                            Grid.Row="6"
+                            Grid.Column="1"
+                            HorizontalAlignment="Stretch">
+                            <TextBox.Text>
+                                <Binding Path="RootPenetrationProbabilityViewModel.Bottom">
+                                    <Binding.ValidationRules>
+                                        <validation:UnitInterval/>
+                                    </Binding.ValidationRules>
+                                </Binding>
+                            </TextBox.Text>
+                        </TextBox>
+                </Grid>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</src:BaseCodeBehind>

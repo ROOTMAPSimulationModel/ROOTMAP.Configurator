@@ -1,0 +1,17 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+  <ItemGroup>
+    <ProjectReference Include="..\..\io\io.csproj" />
+  </ItemGroup>
+
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Rootmap.SchemaValidator.Validator</RootNamespace>
+    <PackageId>ROOTMAP.SchemaValidator</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>MikeAirey</Authors>
+    <Company>MikeAirey</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+
+</Project>

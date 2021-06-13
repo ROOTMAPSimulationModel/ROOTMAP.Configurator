@@ -1,0 +1,13 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="clr-namespace:Rootmap.Configurator.ViewModels"
+    xmlns:system="clr-namespace:System;assembly=mscorlib"
+    xmlns:vm="clr-namespace:Rootmap.Configurator.ViewModels">
+    <DataTemplate DataType="{x:Type vm:CoordinateViewModel}">
+        <WrapPanel>
+            <TextBox Text="{Binding Path=X}" />
+            <TextBox Text="{Binding Path=Y}" />
+            <TextBox Text="{Binding Path=Z}" />
+        </WrapPanel>
+    </DataTemplate>
+</ResourceDictionary>

@@ -1,0 +1,224 @@
+﻿<src:BaseCodeBehind x:Class="Rootmap.Configurator.Process"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:src="clr-namespace:Rootmap.Configurator"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:local="clr-namespace:Rootmap.Configurator"
+    xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+    mc:Ignorable="d"
+    d:DesignHeight="300"
+    d:DesignWidth="300">
+    <Grid>
+        <materialDesign:Card Padding="16"
+            Margin="8">
+            <StackPanel>
+                <Grid>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="Auto"/>
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+                    <TextBlock Grid.Row="0"
+                        Grid.Column="0"
+                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        HorizontalAlignment="Left">Name:</TextBlock>
+                    <TextBox Grid.Row="0"
+                        Grid.Column="1"
+                        Text="{Binding Name}"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"/>
+                    <TextBlock Grid.Row="1"
+                        Grid.Column="0"
+                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        HorizontalAlignment="Left">Activity Type:</TextBlock>
+                    <TextBox Grid.Row="1"
+                        Grid.Column="1"
+                        Text="{Binding ActivityType}"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"/>
+                    <TextBlock Grid.Row="2"
+                        Grid.Column="0"
+                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        HorizontalAlignment="Left">Scoreboard:</TextBlock>
+                    <TextBox Grid.Row="2"
+                        Grid.Column="1"
+                        Text="{Binding Scoreboard}"
+                        Style="{DynamicResource MaterialDesignTextBox}"
+                        TextChanged="HandleChange"
+                        FontSize="14"/>
+                    <TextBlock Grid.Row="3"
+                        Grid.Column="0"
+                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                        Height="22"
+                        Padding="2"
+                        Margin="0,0,32,0"
+                        HorizontalAlignment="Left">Override:</TextBlock>
+                    <CheckBox Grid.Row="3"
+                        Grid.Column="1"
+                        IsChecked="{Binding Path=Override, Mode=TwoWay}"
+                        Checked="HandleChange"
+                        Style="{DynamicResource MaterialDesignCheckBox}"
+                        FontSize="14"
+                        Unchecked="HandleChange"/>
+                </Grid>
+                <ItemsControl ItemsSource="{Binding CharacteristicViewModels}">
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <materialDesign:Card Padding="16"
+                                Margin="8">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition />
+                                    </Grid.ColumnDefinitions>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                        <RowDefinition />
+                                    </Grid.RowDefinitions>
+                                    <TextBlock Grid.Row="0"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Characteristic Descriptor</TextBlock>
+                                    <Button Grid.Row="0"
+                                        Grid.Column="1"
+                                        Click="DeleteCharacteristicDescriptor"
+                                        ToolTip="Delete this Characteristic Descriptor"
+                                        HorizontalAlignment="Right">
+                                        <materialDesign:PackIcon Kind="Delete" />
+                                    </Button>
+                                    <TextBlock Grid.Row="1"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Name:</TextBlock>
+                                    <TextBox Grid.Row="1"
+                                        Grid.Column="1"
+                                        Text="{Binding Name}"
+                                        Style="{DynamicResource MaterialDesignTextBox}"
+                                        TextChanged="HandleChange"
+                                        FontSize="14"/>
+                                    <TextBlock Grid.Row="2"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Units:</TextBlock>
+                                    <TextBox Grid.Row="2"
+                                        Grid.Column="1"
+                                        Text="{Binding Units}"
+                                        Style="{DynamicResource MaterialDesignTextBox}"
+                                        TextChanged="HandleChange"
+                                        FontSize="14"/>
+                                    <TextBlock Grid.Row="3"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0">Minimum:</TextBlock>
+                                    <TextBox Grid.Row="3"
+                                        Grid.Column="1"
+                                        Text="{Binding Minimum}"
+                                        Style="{DynamicResource MaterialDesignTextBox}"
+                                        TextChanged="HandleChange"
+                                        FontSize="14"/>
+                                    <TextBlock Grid.Row="4"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Maximum:</TextBlock>
+                                    <TextBox Grid.Row="4"
+                                        Grid.Column="1"
+                                        Text="{Binding Maximum}"
+                                        Style="{DynamicResource MaterialDesignTextBox}"
+                                        TextChanged="HandleChange"
+                                        FontSize="14"/>
+                                    <TextBlock Grid.Row="5"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Special Per-Box Info:</TextBlock>
+                                    <CheckBox Grid.Row="5"
+                                        Grid.Column="1"
+                                        IsChecked="{Binding Path=SpecialPerBoxInfo, Mode=TwoWay}"
+                                        Checked="HandleChange"
+                                        Style="{DynamicResource MaterialDesignCheckBox}"
+                                        FontSize="14"
+                                        Unchecked="HandleChange"/>
+                                    <TextBlock Grid.Row="6"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">Visible:</TextBlock>
+                                    <CheckBox Grid.Row="6"
+                                        Grid.Column="1"
+                                        IsChecked="{Binding Path=Visible, Mode=TwoWay}"
+                                        Checked="HandleChange"
+                                        Style="{DynamicResource MaterialDesignCheckBox}"
+                                        FontSize="14"
+                                        Unchecked="HandleChange"/>
+                                    <TextBlock Grid.Row="7"
+                                        Grid.Column="0"
+                                        Style="{DynamicResource MaterialDesignBody2TextBlock}"
+                                        Height="22"
+                                        Padding="2"
+                                        Margin="0,0,32,0"
+                                        HorizontalAlignment="Left">To Be Saved:</TextBlock>
+                                    <CheckBox Grid.Row="7"
+                                        Grid.Column="1"
+                                        IsChecked="{Binding Path=ToBeSaved, Mode=TwoWay}"
+                                        Checked="HandleChange"
+                                        Style="{DynamicResource MaterialDesignCheckBox}"
+                                        FontSize="14"
+                                        Unchecked="HandleChange"/>
+                                </Grid>
+                            </materialDesign:Card>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+                </ItemsControl>
+                <StackPanel Orientation="Horizontal">
+                    <Button Content="Add a new Characteristic Descriptor to this Process"
+                        HorizontalAlignment="Right"
+                        Margin="0,10,0,0"
+                        VerticalAlignment="Center"
+                        Width="400"
+                        Click="AddNewCharacteristicDescriptor"/>
+                </StackPanel>
+            </StackPanel>
+        </materialDesign:Card>
+    </Grid>
+</src:BaseCodeBehind>

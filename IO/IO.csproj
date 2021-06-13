@@ -1,0 +1,11 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>netstandard2.0</TargetFramework>
+    <RootNamespace>Rootmap.IO</RootNamespace>
+    <PackageId>ROOTMAP.IO</PackageId>
+    <Version>0.1.0</Version>
+    <Authors>MikeAirey</Authors>
+    <Company>MikeAirey</Company>
+    <GeneratePackageOnBuild>true</GeneratePackageOnBuild>
+  </PropertyGroup>
+</Project>
