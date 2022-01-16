@@ -18,5 +18,5 @@ dotnet build --configuration %config% -p:Version=%ver%
 popd
 pushd ConsoleApp
 dotnet build --configuration %config% -p:Version=%ver%
-dotnet publish -p:Configuration=%config% -p:Version=%ver% -p:PublishTrimmed=false -p:SelfContained=true --runtime win-x64
+dotnet publish -p:Configuration=%config% -p:Version=%ver% -p:PublishTrimmed=false --runtime win-x64 --sc
 popd
